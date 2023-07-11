@@ -6,6 +6,14 @@ class PrintS:
     def prints(cls,items):
         for item in items:
             if isinstance(item, (list, tuple, set)):
+                cls.prints(item)
+            else:
+                print(item)
+
+    @classmethod
+    def prints_yield(cls,items):
+        for item in items:
+            if isinstance(item, (list, tuple, set)):
                 yield from cls.prints(item)
             else:
                 print(item)

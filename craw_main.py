@@ -34,6 +34,7 @@ class CrawlMain:
     # 使用selenium获取内容
     def selenium_text(self, url, timeSleep=0):
         text = ''
+        browser = None
         try:
             # 启动Chrome浏览器
             driver_manager = ChromeDriverManager()
@@ -57,5 +58,6 @@ class CrawlMain:
         except Exception as e:
             raise e
         finally:
-            browser.quit()
+            if browser:
+                browser.quit()
             return text

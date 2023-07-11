@@ -9,8 +9,8 @@ class TwoExcelOperate:
 
     '''判断两个列表的差集'''
     def ListsCompareDifferences(self,*args,**kwargs):
-        a1 = np.array(self.exceloperate.data_list)
-        a2 = np.array(self.exceloperate_two.data_list)
+        a1 = np.array(self.exceloperate._data_list)
+        a2 = np.array(self.exceloperate_two._data_list)
         a1_rows = a1.view([('', a1.dtype)] * a1.shape[a1.ndim-1])
         a2_rows = a2.view([('', a2.dtype)] * a2.shape[a1.ndim-1])
         result_dict = {}
@@ -55,17 +55,17 @@ class TwoExcelOperate:
         # 把源数据转为字典
         dict1 = {}
         err_list = []
-        for i in range(len(self.exceloperate.data_string_list)):
-            if self.exceloperate.data_string_list[i][0] not in dict1:
-                dict1[self.exceloperate.data_string_list[i][0]] = ''
+        for i in range(len(self.exceloperate._data_string_list)):
+            if self.exceloperate._data_string_list[i][0] not in dict1:
+                dict1[self.exceloperate._data_string_list[i][0]] = ''
             else:
                 # 判断异常数据
 
                 # print(self.exceloperate.data_string_list[i][0])
-                err_list.append(self.exceloperate.data_string_list[i][0])
+                err_list.append(self.exceloperate._data_string_list[i][0])
 
         dict2 = {}
-        for data in self.exceloperate_two.data_string_list:
+        for data in self.exceloperate_two._data_string_list:
             if data[0] not in dict2:
                 dict2[data[0]] = [val for val in data]
             else:
@@ -77,7 +77,7 @@ class TwoExcelOperate:
         result_list = []
 
         # 把数据写入
-        for i in self.exceloperate.data_string_list:
+        for i in self.exceloperate._data_string_list:
             if i[0] in dict2:
                 result_list.append(dict2[i[0]])
             else:

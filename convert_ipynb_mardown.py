@@ -1,7 +1,10 @@
+
 from nbconvert import MarkdownExporter
 import nbformat
 import argparse
 import os
+
+
 
 def convert_ipynb_to_md(input_folder, output_folder, exclude_files=[], single_file=False):
     """
@@ -83,7 +86,7 @@ if __name__ == '__main__':
                         help='the folder containing the Jupyter Notebook files')
     parser.add_argument('-o', '--output_folder', metavar='OUTPUT_FOLDER',default=os.getcwd(),
                         help='the folder to store the converted Markdown files')
-    parser.add_argument('-p', '--output_name', metavar='OUTPUT_NAME', default='merge.md',
+    parser.add_argument('-p', '--output_name', metavar='OUTPUT_NAME', default='merge',
                         help='the path to the merged Markdown file')
     parser.add_argument('-e', '--exclude', nargs='+', default=[],
                         help='the list of files to exclude from conversion')
@@ -102,7 +105,7 @@ if __name__ == '__main__':
     input_folder = os.path.abspath(args.input_folder)
     output_folder = os.path.abspath(args.output_folder)
     exclude_files = [os.path.basename(exclude_file) for exclude_file in args.exclude]
-    output_name = os.path.abspath(os.path.join(args.output_folder,args.output_name))
+    output_name = os.path.abspath(os.path.join(args.output_folder,str(args.output_name)+'.md'))
     # 判断是否需要转换为单一文件
     if not args.single_file:
         single_file = False
